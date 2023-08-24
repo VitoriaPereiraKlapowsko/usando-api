@@ -1,34 +1,27 @@
-const corpoTabelaPersonagens = document.getElementById('corpoTabelaPersonagens');
+const axios = require('axios');
 
-function testeApi() {
-    axios.get('https://rickandmortyapi.com/api/character').then(response => {
+function mostrarGatinhoEPiada() {
+    axios.get('https://v2.jokeapi.dev/joke/Any').then(response => {
+        const joke = response.data;
+        if (joke.type === 'single') {
+            console.log(joke.joke);
+        } else if (joke.type === 'twopart') {
+            console.log(joke.setup + '\n' + joke.delivery);
+        }
 
-        console.log(response);
-        console.log(response.data);
-        console.log(response.data.results);
-        const personagens = response.data.results;
-        preencherTabela(personagens)
-    })
+        imagemAleatoriaGatinho();
+    }).catch(error => {
+        console.error(error);
+    });
 }
 
-function preencherTabela(personagens) {
-    personagens.forEach(function (personagem) {
-        const linha = document.createElement('tr')
-
-        const nomeCelula = document.createElement('td');
-        nomeCelula.textContent = personagem.name;
-        linha.appendChild(nomeCelula);
-
-        corpoTabelaPersonagens.appendChild(linha);
-
-
-
-    })
+function imagemAleatoriaGatinho() {
+    axios.get('https://api.thecatapi.com/v1/images/search').then(response => {
+        const catImageURL = response.data[0].url;
+        console.log('Imagem de gato:', catImageURL);
+    }).catch(error => {
+        console.error(error);
+    });
 }
-const botaoChamarAPI = document.getElementById('btChamaApi');
 
-botaoChamarAPI.addEventListener('click', () => {
-
-    testeApi();
-    console.log('Fui clicado')
-})
+mostrarGatinhoEPiada();

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Piadas e Gatinhos</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2><b>Gerando Piadocas e Gatinhos</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#" class="btn btn-success" id="btChamaApi">
+                            <i class="material-icons">&#xE147;</i>
+                            <span>Clique Aqui Para Gerar!</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p><b>Sua Piadoca:</b></p>
+                    <p id="piada"></p>
+                </div>
+                <div class="col-sm-6">
+                    <p><b>Imagem do Gatinho:</b></p>
+                    <img id="gato" src="" alt="Gatinho" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function mostrarGatinhoEPiada() {
+            axios.get('https://v2.jokeapi.dev/joke/Any').then(response => {
+                const joke = response.data;
+                if (joke.type === 'single') {
+                    document.getElementById('piada').textContent = joke.joke;
+                } else if (joke.type === 'twopart') {
+                    document.getElementById('piada').textContent = joke.setup + '\n' + joke.delivery;
+                }
+
+                imagemAleatoriaGatinho();
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+
+        function imagemAleatoriaGatinho() {
+            axios.get('https://api.thecatapi.com/v1/images/search').then(response => {
+                const catImageURL = response.data[0].url;
+                document.getElementById('gato').src = catImageURL;
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const botaoChamarAPI = document.getElementById('btChamaApi');
+
+            botaoChamarAPI.addEventListener('click', () => {
+                mostrarGatinhoEPiada();
+            });
+        });
+    </script>
+</body>
+
+</html>
