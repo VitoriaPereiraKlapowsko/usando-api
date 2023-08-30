@@ -45,38 +45,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        function mostrarGatinhoEPiada() {
-            axios.get('https://v2.jokeapi.dev/joke/Any').then(response => {
-                const joke = response.data;
-                if (joke.type === 'single') {
-                    document.getElementById('piada').textContent = joke.joke;
-                } else if (joke.type === 'twopart') {
-                    document.getElementById('piada').textContent = joke.setup + '\n' + joke.delivery;
-                }
-
-                imagemAleatoriaGatinho();
-            }).catch(error => {
-                console.error(error);
-            });
-        }
-
-        function imagemAleatoriaGatinho() {
-            axios.get('https://api.thecatapi.com/v1/images/search').then(response => {
-                const catImageURL = response.data[0].url;
-                document.getElementById('gato').src = catImageURL;
-            }).catch(error => {
-                console.error(error);
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const botaoChamarAPI = document.getElementById('btChamaApi');
-
-            botaoChamarAPI.addEventListener('click', () => {
-                mostrarGatinhoEPiada();
-            });
-        });
-    </script>
+       
 </body>
-
 </html>
