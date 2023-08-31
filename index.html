@@ -1,50 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Piadas e Gatinhos</title>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piadocas e Cachorrinhos</title>
 </head>
-
 <body>
+    <div class="container-botao">
+        <button href="" id="btChama" class="botao">Clique aqui para gerar a Piadoca!</button>
+    </div>
     <div class="container">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h2><b>Gerando Piadocas e Gatinhos</b></h2>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="#" class="btn btn-success" id="btChamaApi">
-                            <i class="material-icons">&#xE147;</i>
-                            <span>Clique Aqui Para Gerar!</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <p><b>Sua Piadoca:</b></p>
-                    <p id="piada"></p>
-                </div>
-                <div class="col-sm-6">
-                    <p><b>Imagem do Gatinho:</b></p>
-                    <img id="gato" src="" alt="Gatinho" />
-                </div>
-            </div>
+        <div class="piada">
+            <h1 id="tituloPiada">Aqui tem uma Piadoca</h1>
+            <h2 id="respostaPiada">Aqui tem a Resposta</h2>
+        </div>
+        <div class="reacao">
+            <h1>Lá vai um Cachorrinho:</h1>
+            <img id="cachorrinho" src="" alt="">
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-       
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="chamaApi.js"></script>
 </html>

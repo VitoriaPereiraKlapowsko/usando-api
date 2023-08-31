@@ -1,27 +1,32 @@
-const axios = require('axios');
-
-function mostrarGatinhoEPiada() {
-    axios.get('https://v2.jokeapi.dev/joke/Any').then(response => {
-        const joke = response.data;
-        if (joke.type === 'single') {
-            console.log(joke.joke);
-        } else if (joke.type === 'twopart') {
-            console.log(joke.setup + '\n' + joke.delivery);
-        }
-
-        imagemAleatoriaGatinho();
-    }).catch(error => {
-        console.error(error);
-    });
+function exibirPiada(){
+    axios.get('https://v2.jokeapi.dev/joke/Any').then(resposta => {
+        const piada = resposta.data;
+        exibirPiadaAleatoria(piada);
+    })
 }
 
-function imagemAleatoriaGatinho() {
-    axios.get('https://api.thecatapi.com/v1/images/search').then(response => {
-        const catImageURL = response.data[0].url;
-        console.log('Imagem de gato:', catImageURL);
-    }).catch(error => {
-        console.error(error);
-    });
+function exibirCachorro(){
+    axios.get('https://dog.ceo/api/breeds/image/random').then(resposta => {
+        const cachorro = resposta.data.message;
+        exibirImagemCachorro(cachorro);
+    })
 }
 
-mostrarGatinhoEPiada();
+const botao = document.getElementById('btChama');
+
+botao.addEventListener('click', () => {
+    exibirPiada();
+    exibirCachorro();
+})
+
+function exibirPiadaAleatoria(piada){
+    const pergunta = document.getElementById('tituloPiada');
+    const resposta = document.getElementById('respostaPiada');
+
+    pergunta.innerHTML = piada.setup;
+    resposta.innerHTML = piada.delivery;
+}
+
+function exibirImagemCachorro(cachorro){
+    const imagem = document.getElementById('cachorrinho').src = cachorro;
+}
